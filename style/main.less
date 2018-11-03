@@ -1,0 +1,250 @@
+@import "fonts.less";
+@import "palette.less";
+
+@bgColor: @color1;
+@rem: 16px;
+
+html {
+  font-size: 100%;
+}
+
+body {
+  line-height: 1.5;  
+  font-family: @bodyFont; 
+  background: @bgColor;  
+  width: 90%;
+  margin: 0 auto 0 auto;  
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+  border-top: 1em solid #222;
+}
+
+h1, h2, h3, h4 {
+  font-family: @headingFont;
+}
+
+header {  
+  width: 100%;
+  background: #333;
+  nav {
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+    li {
+      padding: .25em;
+      a {
+        color: #eee;
+        text-decoration: none;
+        display: block;
+        padding: .75em;
+        border-bottom: .25em solid transparent;
+        &.active {
+          border-bottom: .25em solid #26ca28;
+        }
+      }
+    }
+  }
+}
+
+main {
+  width: 100%;
+  section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    margin: 0 .5em 1em .5em;
+    div {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      cursor: pointer;
+    }
+    input[type="checkbox"] {
+      display: none;
+    }
+    // From https://paulund.co.uk/how-to-style-a-checkbox-with-css
+    .checkboxThree {
+      width: 10em;
+      height: 3em;
+      background: #333;
+      position: relative;
+    }
+    .checkboxThree:before {
+      content: 'On';
+      position: absolute;
+      top: 50%;
+      bottom: 0;
+      transform: translate(0,-70%);
+      left: 1em;
+      color: #26ca28;
+      font-size: 16px;
+    }
+    .checkboxThree:after {
+      content: 'Off';
+      position: absolute;
+      top: 50%;
+      bottom: 0;
+      transform: translate(0,-70%);
+      right: 1em;
+      left: 84px;
+      color: #eee;
+      font-size: 16px;
+    }
+    .checkboxThree label {
+      display: block;
+      width: 5em;
+      height: 2em;
+      transition: all .2s ease;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      bottom: 0;
+      transform: translate(0,-50%);
+      z-index: 1;
+      left: .75em;
+      background: #ddd;
+    }
+    
+    .checkboxThree input[type=checkbox]:checked + label {
+      left: (10 - 5 - 0.75)*1em;
+      background: #26ca28;
+    }
+  }
+}
+
+h1 {
+  font-size: 3em;
+  color: #e0753b; 
+  text-align: center;
+  margin-top: @rem*2;
+  margin-bottom: @rem;
+}
+
+section#all-card {   
+  display: flex;
+  flex-wrap: wrap;
+}
+
+section[class*="reading"] {
+  background: #DDD;
+  margin: 0 .5em 2em .5em;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap; 
+  box-shadow: 0 0 1px 0 #333;
+  h2 {
+    width: 100%;
+    background: #ffc8aa; 
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 0;
+    padding: .75*@rem @rem;
+  }
+  .card {
+    display: inline-block;
+    flex-grow: 1;
+    background: #DDD;
+    text-align: center;
+    box-shadow: 0 0 1px 0 #333;
+    .meaning {
+      background: #7bcadd;    
+      padding: .25*@rem @rem*.5;
+      &.hide {
+        display: none;
+      }
+    }
+    .kanji {
+      font-size: 2em;
+      padding: .5*@rem;
+    }
+  }
+}
+
+footer {
+  background: #222;
+  color: #eee;
+  width: 100%;
+  margin-top: 3em;
+  padding: 1em 1em 5em 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  ul {
+    li {
+      display: inline-block;
+      margin-right: 1em;
+    }
+    a {
+      display: block;
+      color: #eee;
+      text-decoration: none;
+      padding-bottom: .25em;
+      border-bottom: .25em solid #26ca28;
+      transition: border .1s ease-in;
+      &:hover {
+        border-color: #0feaea;
+      }
+    }
+  }
+}
+
+#go-up {  
+  display: block;
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  z-index: 888;
+  a {
+    display: block;
+    opacity: .2;
+    @size: 3em;
+    width: @size;
+    height: @size;
+    background: @color1;
+    box-shadow: 0 0 3px @color2;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 111;
+    border-radius: 50%;
+    transition: opacity .05s ease-in;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+    &:after {
+      position: absolute;
+      content: "";
+      position: 999;
+      width: 0;
+      height: 0;
+      border-top: @size/4 solid transparent;
+      border-left: @size/4 solid transparent;
+      border-bottom: (@size*3/2)/4 solid @color5;
+      border-right: @size/4 solid transparent;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -75%);
+    }
+  }
+}
+
+@page { size:8.5in 11in; margin: 1cm }
+
+section[class*="reading"] {
+  page-break-before: avoid;
+  page-break-after: avoid;
+  page-break-inside : avoid;
+}
+
+h2 {
+  page-break-before: avoid;
+  page-break-after: avoid;
+  page-break-inside : avoid;
+}
