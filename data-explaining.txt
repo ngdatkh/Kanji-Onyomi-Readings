@@ -7,12 +7,12 @@ Start
 
 //////////////////////
 Unique Values
-  Unique aalues are reversed from row to column
+  Unique values are reversed from row to column
 //////////////////////
 
 //////////////////////
 Cal Values
-Use the following codes to calculate what has the kanji has the same reading
+Use the following codes to calculate what kanji has the same reading
 *Press CTR + SHIFT + ENTER for the codes to work. **Only pressing ENTER won't do the job.
 
 =TEXTJOIN(" | ",1,TEXTJOIN(" | ",1,REPT(A:A,(D:D=K1)+0)),TEXTJOIN(" | ",1,REPT(A:A,(E:E=K1)+0)),TEXTJOIN(" | ",1,REPT(A:A,(F:F=K1)+0)),TEXTJOIN(" | ",1,REPT(A:A,(G:G=K1)+0)),TEXTJOIN(" | ",1,REPT(A:A,(H:H=K1)+0)),TEXTJOIN(" | ",1,REPT(A:A,(I:I=K1)+0)))
